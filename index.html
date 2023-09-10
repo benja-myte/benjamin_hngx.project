@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal and Date/Time Data</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #personal-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #personal-info img{
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        #word-date-info {
+            text-align: center;
+        }
+
+        #time-info {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Personal, Word Date, and Time Data</h1>
+    </header>
+
+    <div id="content">
+
+        <div id="personal-info" data-testid="personal-info">
+            <h2>Personal Information</h2>
+            <img src="Images/20230908_155625.jpg" data-testid="slackDisplayImage" alt="Benji">
+            <p data-testid="Udeh Benjamin Uchenna">Name: Udeh Benjamin Uchenna</p>
+            <p>Username: Benji</p>
+            <p>Email: <a href="mailto:benjaminudeh@gmail.com">benjaminudeh236@gmail.com</a></p>
+            <p>Age: 19</p>
+            <p data-testid="myTrack">Track: Frontend</p>
+            <p>GitHub Link: <a href="https://benja-myte.github.io/benjamin/" target="_blank">https://benja-myte.github.io/benjamin/</a></p>
+        </div>
+
+        <div id="word-date-info" data-testid="word-date-info">
+            <h2>Date Information</h2>
+            <p>Date: <span id="word-date" data-testid="currentDayOfTheWeek"></span></p>
+        </div>
+
+        <div id="time-info" data-testid="time-info">
+            <h2>Time Information</h2>
+            <p>Current Time: <span id="current-time" data-testid="currentUTCTime"></span></p>
+            <button id="refresh-time" data-testid="refresh-time">Refresh Time</button>
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+        function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        function updateCurrentTime() {
+            const currentTimeElement = document.getElementById('current-time');
+            currentTimeElement.textContent = getCurrentTime();
+        }
+
+        function getWordDate() {
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const now = new Date();
+            const dayOfWeek = daysOfWeek[now.getDay()];
+            const month = months[now.getMonth()];
+            const day = now.getDate();
+            const year = now.getFullYear();
+
+            return `${dayOfWeek}, ${month} ${day}, ${year}`;
+        }
+
+        function updateWordDate() {
+            const wordDateElement = document.getElementById('word-date');
+            wordDateElement.textContent = getWordDate();
+        }
+
+        const refreshTimeButton = document.getElementById('refresh-time');
+        refreshTimeButton.addEventListener('click', updateCurrentTime);
+
+        // Initialize current time and word date
+        updateCurrentTime();
+        updateWordDate();
+
+        setInterval(updateCurrentTime, 1000); // Update time every second
+    </script>
+
+</body>
+</html>
