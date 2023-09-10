@@ -85,18 +85,19 @@
 
 
     <script>
-        function getCurrentTime() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            return `${hours}:${minutes}:${seconds}`;
-        }
+                function updateUTCTime() {
+  const currentTimeUTC = new Date().toISOString();
+  document.getElementById('current-time').textContent = currentTimeUTC;
+}
 
-        function updateCurrentTime() {
-            const currentTimeElement = document.getElementById('current-time');
-            currentTimeElement.textContent = getCurrentTime();
-        }
+// Call the function initially
+updateUTCTime();
+
+// Update the time every millisecond
+setInterval(updateUTCTime, 1);
+
+
+
 
         function getWordDate() {
             const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -116,14 +117,17 @@
             wordDateElement.textContent = getWordDate();
         }
 
-        const refreshTimeButton = document.getElementById('refresh-time');
-        refreshTimeButton.addEventListener('click', updateCurrentTime);
+       
 
         // Initialize current time and word date
-        updateCurrentTime();
         updateWordDate();
 
-        setInterval(updateCurrentTime, 1000); // Update time every second
+
+
+
+
+
+
     </script>
 
 </body>
