@@ -85,16 +85,18 @@
 
 
     <script>
-                function updateUTCTime() {
-  const currentTimeUTC = new Date().toISOString();
-  document.getElementById('current-time').textContent = currentTimeUTC;
-}
 
-// Call the function initially
-updateUTCTime();
 
-// Update the time every millisecond
-setInterval(updateUTCTime, 1);
+        function updateUTCTime() {
+        const currentTimeUTC = new Date().toISOString();
+        document.getElementById('current-time').textContent = currentTimeUTC;
+        }
+
+        // Call the function initially
+        updateUTCTime();
+
+        // Update the time every millisecond
+        setInterval(updateUTCTime, 1);
 
 
 
